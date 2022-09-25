@@ -47,4 +47,18 @@ class PostController extends Controller
             ],500);
         }
     }
+
+    public function show($id)
+    {
+        $post = Post::where('id', $id)->first();
+
+        return response()->json($post);
+    }
+
+    public function userPost($id)
+    {
+        $post = Post::where('user_id', $id)->get();
+
+        return response()->json($post);
+    }
 }
