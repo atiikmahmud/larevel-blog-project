@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,9 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::post('/create-post', [PostController::class, 'store']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
 Route::get('/posts/user/{id}', [PostController::class, 'userPost']);
+
+Route::get('/comment/{id}', [CommentController::class, 'index']);
+Route::post('/comment', [CommentController::class, 'store']);
 
 Route::post("login", [AuthController::class, "login"]);
 
