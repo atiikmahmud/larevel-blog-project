@@ -12,14 +12,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::post('/create-post', [PostController::class, 'store']);
-Route::get('/posts/{id}', [PostController::class, 'show']);
-Route::get('/posts/user/{id}', [PostController::class, 'userPost']);
-
-Route::get('/comment/{id}', [CommentController::class, 'index']);
-Route::post('/comment', [CommentController::class, 'store']);
-
 Route::post("login", [AuthController::class, "login"]);
 
 Route::group(['middleware' => 'api'], function() {
@@ -28,10 +20,14 @@ Route::group(['middleware' => 'api'], function() {
     Route::post("me", [AuthController::class, "me"]);
 });
 
-// Route::get('/user', [UserController::class, "show"]);
-// Route::post('/register', [UserController::class, "store"]);
-
 Route::resource('users', UserController::class);
 
+Route::get('/posts', [PostController::class, 'index']);
+Route::post('/create-post', [PostController::class, 'store']);
+Route::get('/posts/{id}', [PostController::class, 'show']);
+Route::get('/posts/user/{id}', [PostController::class, 'userPost']);
+
+Route::get('/comment/{id}', [CommentController::class, 'index']);
+Route::post('/comment', [CommentController::class, 'store']);
 
 Route::post('/message', [ContactController::class, "message"]);
